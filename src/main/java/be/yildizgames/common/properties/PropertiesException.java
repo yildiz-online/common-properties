@@ -24,17 +24,34 @@
 
 package be.yildizgames.common.properties;
 
-public class PropertiesException extends IllegalStateException {
+/**
+ * A technical exception occuring when handling properties.
+ * @author Grégory Van den Borre
+ */
+class PropertiesException extends IllegalStateException {
 
-    PropertiesException(String message, Exception cause) {
+    /**
+     * Create a new PropertiesException with a message and a root cause.
+     * @param message Message for this exception.
+     * @param cause Initial cause of the exception.
+     */
+    PropertiesException(final String message, final Exception cause) {
         super(message, cause);
     }
 
+    /**
+     * Create a new PropertiesException with a root cause.
+     * @param cause Initial cause of the exception.
+     */
     PropertiesException(Exception cause) {
         super(cause);
     }
 
-    PropertiesException(String s) {
-        super(s);
+    /**
+     * Create a new PropertiesException with a message.
+     * @param message Message for this exception.
+     */
+    PropertiesException(String message) {
+        super(message);
     }
 }

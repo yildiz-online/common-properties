@@ -27,9 +27,17 @@ import java.util.Arrays;
 import java.util.Properties;
 
 /**
+ * Merge several property files to create one.
  * @author Grégory Van den Borre
  */
 public class PropertiesMerger {
+
+    /**
+     * PRivate constructor to prevent instantiation.
+     */
+    private PropertiesMerger() {
+        super();
+    }
 
     /**
      * Create a new properties object by merging several ones.
