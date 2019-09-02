@@ -42,9 +42,9 @@ public class PropertiesHelperTest {
     @Test
     public void testGetPropertiesFromFile() {
         Properties p =  this.getPropertiesFromFile("test.properties");
-        assertEquals(p.getProperty("key1"), "value1");
-        assertEquals(p.getProperty("key2"), "value2");
-        assertEquals(p.getProperty("key3"), "value3");
+        assertEquals("value1", p.getProperty("key1"));
+        assertEquals("value2", p.getProperty("key2"));
+        assertEquals("value3", p.getProperty("key3"));
     }
 
     @Test
