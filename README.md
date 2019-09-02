@@ -48,7 +48,7 @@ In your maven project, add the dependency
 ```xml
 <dependency>
     <groupId>be.yildiz-games</groupId>
-    <artifactId>common-logging</artifactId>
+    <artifactId>common-properties</artifactId>
     <version>LATEST</version>
 </dependency>
 ```
