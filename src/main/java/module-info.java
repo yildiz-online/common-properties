@@ -24,7 +24,7 @@
 /**
  * @author Grégory Van den Borre
  */
-module be.yildizgames.common.properties {
+open module be.yildizgames.common.properties {
 
     exports be.yildizgames.common.properties;
 }

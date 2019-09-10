@@ -37,10 +37,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * @author Grégory Van den Borre
  */
-public class PropertiesHelperTest {
+class PropertiesHelperTest {
 
     @Test
-    public void testGetPropertiesFromFile() {
+    void testGetPropertiesFromFile() {
         Properties p =  this.getPropertiesFromFile("test.properties");
         assertEquals("value1", p.getProperty("key1"));
         assertEquals("value2", p.getProperty("key2"));
@@ -48,7 +48,7 @@ public class PropertiesHelperTest {
     }
 
     @Test
-    public void testGetBooleanDefault() {
+    void testGetBooleanDefault() {
         Properties p = this.getPropertiesFromFile("test.properties");
         assertFalse(PropertiesHelper.getBooleanValue(p, "notExistingKey", false));
         assertTrue(PropertiesHelper.getBooleanValue(p, "notExistingKey", true));
