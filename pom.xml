@@ -34,7 +34,6 @@
   <inceptionYear>2019</inceptionYear>
   <url>https://engine.yildiz-games.be</url>
 
-  <groupId>be.yildiz-games</groupId>
   <artifactId>common-properties</artifactId>
   <version>1.0.1-SNAPSHOT</version>
 
