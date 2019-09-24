@@ -50,7 +50,7 @@ public interface PropertiesHelper {
             PropertiesHelper.keyNotFoundError(key);
         }
         if ("true".equalsIgnoreCase(value) || "false".equalsIgnoreCase(value)) {
-            return Boolean.valueOf(value);
+            return Boolean.parseBoolean(value);
         }
         throw new PropertiesException("Only true or false value allowed, found " + value);
     }
@@ -73,7 +73,7 @@ public interface PropertiesHelper {
             return defaultValue;
         }
         if ("true".equalsIgnoreCase(value) || "false".equalsIgnoreCase(value)) {
-            return Boolean.valueOf(value);
+            return Boolean.parseBoolean(value);
         }
         throw new PropertiesException("Only true or false value allowed, found " + value);
     }
