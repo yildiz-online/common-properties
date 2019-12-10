@@ -25,7 +25,7 @@
 package be.yildizgames.common.properties;
 
 /**
- * A technical exception occuring when handling properties.
+ * A technical exception occurring when handling properties.
  * @author Grégory Van den Borre
  */
 class PropertiesException extends IllegalStateException {

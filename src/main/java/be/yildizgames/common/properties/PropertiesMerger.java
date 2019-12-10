@@ -33,7 +33,7 @@ import java.util.Properties;
 public class PropertiesMerger {
 
     /**
-     * PRivate constructor to prevent instantiation.
+     * Private constructor to prevent instantiation.
      */
     private PropertiesMerger() {
         super();
@@ -46,10 +46,8 @@ public class PropertiesMerger {
      */
     public static Properties merge(final Properties... p) {
         Properties properties = new Properties();
-        if( p!= null) {
-            Arrays.stream(p)
+        Arrays.stream(p)
                     .forEach(properties::putAll);
-        }
         return properties;
     }
 
