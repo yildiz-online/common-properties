@@ -24,15 +24,14 @@
 
 package be.yildizgames.common.properties;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author Grégory Van den Borre
@@ -41,22 +40,58 @@ class PropertiesHelperTest {
 
     @Test
     void testGetPropertiesFromFile() {
-        Properties p =  this.getPropertiesFromFile("test.properties");
-        assertEquals("value1", p.getProperty("key1"));
-        assertEquals("value2", p.getProperty("key2"));
-        assertEquals("value3", p.getProperty("key3"));
+        Properties p =  getPropertiesFromFile("test.properties");
+        Assertions.assertEquals("value1", p.getProperty("key1"));
+        Assertions.assertEquals("value2", p.getProperty("key2"));
+        Assertions.assertEquals("value3", p.getProperty("key3"));
     }
 
-    @Test
-    void testGetBooleanDefault() {
-        Properties p = this.getPropertiesFromFile("test.properties");
-        assertFalse(PropertiesHelper.getBooleanValue(p, "notExistingKey", false));
-        assertTrue(PropertiesHelper.getBooleanValue(p, "notExistingKey", true));
+    @Nested
+    class GetBoolean {
+
+        @Test
+        void nullProperties() {
+            Assertions.assertThrows(NullPointerException.class, () -> PropertiesHelper.getBooleanValue(null, "key5"));
+        }
+
+        @Test
+        void nullKey() {
+            Properties p = getPropertiesFromFile("test.properties");
+            Assertions.assertThrows(NullPointerException.class, () -> PropertiesHelper.getBooleanValue(p, null));
+        }
+
+        @Test
+        void keyNotFound() {
+            Properties p = getPropertiesFromFile("test.properties");
+            Assertions.assertThrows(PropertiesException.class, () -> PropertiesHelper.getBooleanValue(p, "notexistingkey"));
+        }
+
+        @Test
+        void getDefault() {
+            Properties p = getPropertiesFromFile("test.properties");
+            Assertions.assertFalse(PropertiesHelper.getBooleanValue(p, "notExistingKey", false));
+            Assertions.assertTrue(PropertiesHelper.getBooleanValue(p, "notExistingKey", true));
+        }
+
+        @Test
+        void happyFlowDefault() {
+            Properties p = getPropertiesFromFile("test.properties");
+            Assertions.assertFalse(PropertiesHelper.getBooleanValue(p, "key5", true));
+            Assertions.assertTrue(PropertiesHelper.getBooleanValue(p, "key4", false));
+        }
+
+        @Test
+        void happyFlow() {
+            Properties p = getPropertiesFromFile("test.properties");
+            Assertions.assertFalse(PropertiesHelper.getBooleanValue(p, "key5"));
+            Assertions.assertTrue(PropertiesHelper.getBooleanValue(p, "key4"));
+        }
+
     }
 
-    private Properties getPropertiesFromFile(String path) {
+    private static Properties getPropertiesFromFile(String path) {
         Properties p = new Properties();
-        try (InputStream is = this.getClass().getClassLoader().getResourceAsStream(path)) {
+        try (InputStream is = PropertiesHelperTest.class.getClassLoader().getResourceAsStream(path)) {
             p.load(is);
         } catch (IOException e) {
             throw new IllegalArgumentException(e);
